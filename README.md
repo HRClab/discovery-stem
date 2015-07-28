@@ -1,9 +1,9 @@
 # discovery-stem
 Discovery Stem Lessons
 
-# Python Lesson Dependencies
-Several lessons will be run in special IPython notebooks
-* IPython
+# Python Lessons
+Several lessons will be run in special IPython notebooks. To run them, we need the following programs:
+* IPython - You probably have this.
 * nbgrader -  to install, use
 ```
 pip install nbgrader
@@ -11,6 +11,24 @@ nbgrader extension install
 nbgrader extension activate
 ```
 
+# Arduino Lessons
+
+The Arduino lessons will start from a file of the form `[lesson name]_base.ino`.
+
+Throughout the lesson, this file will be modified to produce a desired
+behavior.  
+
+So that the instructors know what should eventually happen, a complete
+working file is stored in `[lesson name]_complete.ino`.
+
+In order to start the lesson over, you can revert the changes you made
+to `[lesson_name]_base.ino` by using the command:
+
+```
+git stash
+```
+
+# Lesson 1 - Programming
 
 The first session will consist of two sessions in parallel
 
