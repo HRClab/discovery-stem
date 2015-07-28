@@ -30,10 +30,15 @@ git stash
 
 # Lesson 1 - Programming
 
-The first session will consist of two sessions in parallel
+The first session will consist of two sessions to be run in parallel.
 
 * [Python Programming](#python)
 * [Arduino Programming](arduino_programming.md)
+
+# Lesson 2 
+
+* [Modeling](#modeling)
+
 
 
 # <a name="python"></a>Python Programming
@@ -54,3 +59,23 @@ The lesson file will be located at
 ```
 [repository directory]/release/python_programming/python_programming.ipynb
 ```
+
+# <a name="modeling"></a>Modeling and Simulation
+
+This lesson requires nbgrader, as described above. 
+
+To generate the lesson use (from the repository directory)
+```
+nbgrader assign --create --force Modeling
+```
+
+Start IPython Notebook. On command line use
+```
+ipython notebook
+```
+
+The lesson file will be located at
+```
+[repository directory]/release/Modeling/Modeling.ipynb
+```
+
