@@ -11,7 +11,7 @@ some other lessons, we will program with the language Python. Be
 careful, because the two languages are a bit different. 
 
 
-## Getting Started
+## The beginning file
 
 We will start with a file that looks like this:
 
@@ -41,4 +41,45 @@ void loop() {
 
 }
 ```
+In the code above, there are several comments. These do not change the
+behavior of the program, but they can be used to explain the code to
+programmers.
 
+We will modify the code until it is doing interesting things. 
+
+## Hello World
+
+In order to start programming the Arduino, we will write a simple
+program called "Hello World".
+
+Edit the `setup` code so that it looks like the code below.
+```
+...
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Hello World");
+}
+...
+```
+In the Arduino window, press the "right arrow" button at the top. This
+does two things:
+* *compiles* the code into a format that can be read by the Arduino
+* uploads the code to Arduino (this step may take some time)
+
+If everything went well, "Done Uploading" should appear below
+the text editor.
+
+To test your code, open the "Serial Monitor" using one of these methods:
+* Click **Tools -> Serial Monitor**
+* On Windows, type `CTRL+SHIFT+M`
+* On Mac OSX, type `COMMAND+SHIFT+M`
+
+The serial monitor should display "Hello World".
+
+If you click the white "reset" button on the Arduino, the program will
+start over and "Hello World" will be written again. Give it a try.
+
+
+### A note on spaces
+In C++, the spacing of the lines does not matter (unlike in Python),
+but you must be careful to put semicolons in the right places. 
