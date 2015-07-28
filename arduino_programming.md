@@ -52,14 +52,13 @@ We will modify the code until it is doing interesting things.
 In order to start programming the Arduino, we will write a simple
 program called "Hello World".
 
-Edit the `setup` code so that it looks like the code below.
+Edit the `setup` code so that it looks like the code below. (Do not
+modify the rest of the code.)
 ```
-...
 void setup() {
   Serial.begin(9600);
   Serial.println("Hello World");
 }
-...
 ```
 In the Arduino window, press the "right arrow" button at the top. This
 does two things:
@@ -69,10 +68,7 @@ does two things:
 If everything went well, "Done Uploading" should appear below
 the text editor.
 
-To test your code, open the "Serial Monitor" using one of these methods:
-* Click **Tools -> Serial Monitor**
-* On Windows, type `CTRL+SHIFT+M`
-* On Mac OSX, type `COMMAND+SHIFT+M`
+To test your code, open the "Serial Monitor", click **Tools -> Serial Monitor**
 
 The serial monitor should display "Hello World".
 
@@ -83,3 +79,83 @@ start over and "Hello World" will be written again. Give it a try.
 ### A note on spaces
 In C++, the spacing of the lines does not matter (unlike in Python),
 but you must be careful to put semicolons in the right places. 
+
+## Variables
+
+Now we will see how you can use variables to store information and
+perform calculations.
+
+### Defining a variable
+Edit `setup` code again so that it looks like the code below:
+
+```
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Hello World");
+  
+  int x = 2;
+  Serial.print("Variable x has value ");
+  Serial.println(x);
+}
+```
+Upload the code using the "right arrow" button, and examine the
+  behavior with the serial monitor.
+
+In C++, we must be careful about how we *initialize* variables.
+
+The line `int x = 2` should be interpreted as "create an integer
+called 'x' with value 2."
+
+### Defining a new variable from a calculation
+
+Now we will perform a basic calculation and define a new variable to
+hold the result.
+
+Edit the `setup` code again so that it reads
+```
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Hello World");
+  
+  int x = 2;
+  Serial.print("Variable x has value ");
+  Serial.println(x);
+  
+  int y = x * 3;
+  Serial.print("Variable y has value ");
+  Serial.println(y); 
+}
+```
+Upload the code and test it.
+
+### Changing the value of a variable
+
+Sometimes it is useful to change the value of a variable as the result
+of a calculation. To see how this works, change `setup` again so that
+it reads:
+```
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Hello World");
+  
+  int x = 2;
+  Serial.print("Variable x has value ");
+  Serial.println(x);
+  
+  int y = x * 3;
+  Serial.print("Variable y has value ");
+  Serial.println(y); 
+  
+  x = x + y;
+  Serial.print("Variable x now has value ");
+  Serial.println(x);
+}
+```
+There are a few things to note:
+* You cannot interpret the  expression `x = x + y` as you would in
+  math. (It would be incorrect!) Instead, it should be interpreted as:
+
+  "The new value of variable `x` is the current value of variable `x` plus the
+  current value of variable `y`"
+* When changing the value of a variable, we do not write the term
+  `int` again, since we've already written above that `x` is an `int`. 

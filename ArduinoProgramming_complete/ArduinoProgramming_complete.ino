@@ -16,6 +16,18 @@
 void setup() {
   Serial.begin(9600);
   Serial.println("Hello World");
+  
+  int x = 2;
+  Serial.print("Variable x has value ");
+  Serial.println(x);
+  
+  int y = x * 3;
+  Serial.print("Variable y has value ");
+  Serial.println(y); 
+  
+  x = x + y;
+  Serial.print("Variable x now has value ");
+  Serial.println(x);
 }
 
 void loop() {
