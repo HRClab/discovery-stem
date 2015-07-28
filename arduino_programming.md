@@ -158,4 +158,38 @@ There are a few things to note:
   "The new value of variable `x` is the current value of variable `x` plus the
   current value of variable `y`"
 * When changing the value of a variable, we do not write the term
-  `int` again, since we've already written above that `x` is an `int`. 
+  `int` again, since we've already written above that `x` is an
+  `int`.
+
+## The loop
+
+For robot applications, we will typically have calculations that must
+be performed repeatedly. These repeated calculations are performed by
+the loop section of the code.
+
+Before editing the `loop` code, we will define a variable that can be
+accessed by the `loop` function. Change the code above `void setup()`
+as follows
+```
+int i = 0;
+
+void setup() {
+...
+```
+Now change the loop function to read:
+```
+void loop() {
+  i = i + 1;
+  Serial.print("Variable i has value ");
+  Serial.println(i);
+  delay(1000);
+}
+```
+Upload the code and test it with the serial monitor.
+
+The command `delay(1000)` makes the loop wait for 1 second (1000 ms)
+before restarting. This makes the output easier to read in the serial
+monitor. 
+
+What do you think would happen if you placed the command `int i = 0;`
+inside the loop?

@@ -13,6 +13,8 @@
 
 // Comments can also be written like this.
 
+int i = 0;
+
 void setup() {
   Serial.begin(9600);
   Serial.println("Hello World");
@@ -31,6 +33,8 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  i = i + 1;
+  Serial.print("Variable i has value ");
+  Serial.println(i);
+  delay(1000);
 }
