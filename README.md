@@ -15,7 +15,7 @@ nbgrader extension activate
 The first session will consist of two sessions in parallel
 
 * [Python Programming](#python)
-* Arduino Programming
+* [Arduino Programming](arduino_programming.md)
 
 
 # <a name="python"></a>Python Programming
