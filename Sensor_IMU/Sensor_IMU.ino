@@ -3,6 +3,9 @@
 
 #include "Wire.h"
 
+// Include library for interrupt timer
+#include "TimerOne.h"
+
 // Found address using the I2cScanner
 // http://playground.arduino.cc/Main/I2cScanner
 MPU6050 mpu(0x68); // <-- use for AD0 high
@@ -16,9 +19,9 @@ uint16_t fifoCount;     // count of all bytes currently in FIFO
 uint8_t fifoBuffer[64]; // FIFO storage buffer
 
 Quaternion q;           // [w, x, y, z]         quaternion container
-VectorFloat gravity;    // [x, y, z]            gravity vector
-float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 float euler[3];         // [psi, theta, phi]    Euler angle container
+
+byte eulerBuf[3];
 
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
@@ -29,12 +32,11 @@ void dmpDataReady() {
     mpuInterrupt = true;
 }
 
-
 void setup() {
   // put your setup code here, to run once:
   Wire.begin();
   
-  Serial.begin(19200);
+  Serial.begin(38400);
 
   Serial.println("Initializing I2C devices...");
   mpu.initialize();
@@ -43,12 +45,12 @@ void setup() {
   Serial.println("Testing device connections...");
   Serial.println(mpu.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
-  // wait for ready
-  Serial.println(F("\nSend any character to begin DMP programming and demo: "));
-  while (Serial.available() && Serial.read()); // empty buffer
-  while (!Serial.available());                 // wait for data
-  while (Serial.available() && Serial.read()); // empty buffer again
-  
+//  // wait for ready
+//  Serial.println(F("\nPress to begin DMP programming and demo: "));
+//  while (Serial.available() && Serial.read()); // empty buffer
+//  while (!Serial.available());                 // wait for data
+//  while (Serial.available() && Serial.read()); // empty buffer again
+//  
   // load and configure the DMP
   Serial.println(F("Initializing DMP..."));
   devStatus = mpu.dmpInitialize();
@@ -90,6 +92,7 @@ void setup() {
         Serial.print(devStatus);
         Serial.println(F(")"));
     }
+    
 }
 
 void loop() {
@@ -103,17 +106,7 @@ void loop() {
     
     // wait for MPU interrupt or extra packet(s) available
     while (!mpuInterrupt && fifoCount < packetSize) {
-        // other program behavior stuff here
-        // .
-        // .
-        // .
-        // if you are really paranoid you can frequently test in between other
-        // stuff to see if mpuInterrupt is true, and if so, "break;" from the
-        // while() loop to immediately process the MPU data
-        // .
-        // .
-        // .
-        Serial.println("I am waitning");
+        
       }
 
     // reset interrupt flag and get INT_STATUS byte
@@ -144,18 +137,18 @@ void loop() {
          // display Euler angles in degrees
             mpu.dmpGetQuaternion(&q, fifoBuffer);
             mpu.dmpGetEuler(euler, &q);
-            Serial.print("euler\t");
-            Serial.print(euler[0] * 180/M_PI);
+            
+            Serial.print("Angles\t");
+            Serial.print(euler[0] * 180/M_PI,3);
             Serial.print("\t");
-            Serial.print(euler[1] * 180/M_PI);
+            Serial.print(euler[1] * 180/M_PI,3);
             Serial.print("\t");
-            Serial.println(euler[2] * 180/M_PI);
+            Serial.println(euler[2] * 180/M_PI,3);
+       
     }
     else {
        Serial.print("MPU Status: ");
        Serial.println(mpuIntStatus);  
     }
-     
-    // delay(1000);
 
 }
