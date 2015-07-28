@@ -38,7 +38,7 @@ The first session will consist of two sessions to be run in parallel.
 # Lesson 2 
 
 * [Modeling](#modeling)
-
+* [Sensors and Actuators](sensor_IMU.md)
 
 
 # <a name="python"></a>Python Programming
