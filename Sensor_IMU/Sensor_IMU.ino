@@ -3,9 +3,6 @@
 
 #include "Wire.h"
 
-// Include library for interrupt timer
-#include "TimerOne.h"
-
 // Found address using the I2cScanner
 // http://playground.arduino.cc/Main/I2cScanner
 MPU6050 mpu(0x68); // <-- use for AD0 high
@@ -20,8 +17,6 @@ uint8_t fifoBuffer[64]; // FIFO storage buffer
 
 Quaternion q;           // [w, x, y, z]         quaternion container
 float euler[3];         // [psi, theta, phi]    Euler angle container
-
-byte eulerBuf[3];
 
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
